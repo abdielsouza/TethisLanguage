@@ -1,0 +1,5 @@
+/home/abdiel/Documentos/general-projects/Tethis/build/CMakeFiles/Tethis.dir
+/home/abdiel/Documentos/general-projects/Tethis/build/CMakeFiles/package.dir
+/home/abdiel/Documentos/general-projects/Tethis/build/CMakeFiles/package_source.dir
+/home/abdiel/Documentos/general-projects/Tethis/build/CMakeFiles/edit_cache.dir
+/home/abdiel/Documentos/general-projects/Tethis/build/CMakeFiles/rebuild_cache.dir

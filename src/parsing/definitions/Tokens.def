@@ -1,0 +1,170 @@
+/// TOKEN(name)
+/// Expands by default for every token kind.
+#ifndef TOKEN
+#   define TOKEN(name)
+#endif
+
+/// KEYWORD(kw)
+/// Macro to all keywords.
+#ifndef KEYWORD
+#   define KEYWORD(kw) TOKEN(kw_ ## kw)
+#endif
+
+/// DECL_KEYWORD(kw)
+/// For keywords that can be used on a declaration.
+#ifndef DECL_KEYWORD
+#   define DECL_KEYWORD(kw) KEYWORD(kw)
+#endif
+
+/// STATEMENT_KEYWORD(kw)
+/// For keywords that can be used in a statement.
+#ifndef STATEMENT_KEYWORD
+#   define STATEMENT_KEYWORD(kw) KEYWORD(kw)
+#endif
+
+/// EXPR_KEYWORD(kw)
+/// For keywords that can be used inside an expression.
+#ifndef EXPR_KEYWORD
+#   define EXPR_KEYWORD(kw) KEYWORD(kw)
+#endif
+
+/// PATTERN_KEYWORD(kw)
+/// For keywords that can be used on a matching pattern (like '_').
+#ifndef PATTERN_KEYWORD
+#   define PATTERN_KEYWORD(kw) KEYWORD(kw)
+#endif
+
+/**
+ * PUNCTUATOR(name, str)
+ * Expands for every punctuator or operator symbol in Tethis.
+ * @param name The symbolic name of the punctuator.
+ * @param str The string literal that evaluates to some punctuator.
+ */
+#ifndef PUNCTUATOR
+#   define PUNCTUATOR(name, str) TOKEN(name)
+#endif
+
+/// LITERAL(name)
+///   Tokens representing literal values, e.g. 'integer_literal'.
+#ifndef LITERAL
+#   define LITERAL(name) TOKEN(name)
+#endif
+
+/// MISC(name)
+///   Miscellaneous tokens, e.g. 'eof' and 'unknown'.
+#ifndef MISC
+#   define MISC(name) TOKEN(name)
+#endif
+
+/*
+ * Token definitions below...
+*/
+
+DECL_KEYWORD(struct)
+DECL_KEYWORD(enum)
+DECL_KEYWORD(module)
+DECL_KEYWORD(use)
+DECL_KEYWORD(let)
+DECL_KEYWORD(const)
+DECL_KEYWORD(static)
+DECL_KEYWORD(type)
+DECL_KEYWORD(export)
+DECL_KEYWORD(mixin)
+DECL_KEYWORD(interface)
+DECL_KEYWORD(async)
+STATEMENT_KEYWORD(if)
+STATEMENT_KEYWORD(else)
+STATEMENT_KEYWORD(elif)
+STATEMENT_KEYWORD(for)
+STATEMENT_KEYWORD(loop)
+STATEMENT_KEYWORD(in)
+STATEMENT_KEYWORD(return)
+STATEMENT_KEYWORD(yield)
+STATEMENT_KEYWORD(when)
+STATEMENT_KEYWORD(where)
+STATEMENT_KEYWORD(match)
+STATEMENT_KEYWORD(catch)
+STATEMENT_KEYWORD(throw)
+STATEMENT_KEYWORD(await)
+STATEMENT_KEYWORD(defer)
+EXPR_KEYWORD(try)
+EXPR_KEYWORD(from)
+EXPR_KEYWORD(as)
+EXPR_KEYWORD(is)
+EXPR_KEYWORD(null)
+EXPR_KEYWORD(true)
+EXPR_KEYWORD(false)
+EXPR_KEYWORD(this)
+PATTERN_KEYWORD(_)
+PATTERN_KEYWORD(default)
+PUNCTUATOR(l_paren, "(")
+PUNCTUATOR(r_paren, ")")
+PUNCTUATOR(l_brace, "{")
+PUNCTUATOR(r_brace, "}")
+PUNCTUATOR(l_square, "[")
+PUNCTUATOR(r_square, "]")
+PUNCTUATOR(l_angle, "<")
+PUNCTUATOR(r_angle, ">")
+PUNCTUATOR(period, ".")
+PUNCTUATOR(period_prefix, ".")
+PUNCTUATOR(comma, ",")
+PUNCTUATOR(ellipsis, "...")
+PUNCTUATOR(colon, ":")
+PUNCTUATOR(semicolon, ";")
+PUNCTUATOR(assign, "=")
+PUNCTUATOR(at_sign, "@")
+PUNCTUATOR(comment, "#")
+PUNCTUATOR(comment_open, "#*")
+PUNCTUATOR(comment_close, "*#")
+PUNCTUATOR(equal, "==")
+PUNCTUATOR(not_equal, "!=")
+PUNCTUATOR(greater_than_equal, ">=")
+PUNCTUATOR(less_than_equal, "<=")
+PUNCTUATOR(increment, "++")
+PUNCTUATOR(increment_assign, "+=")
+PUNCTUATOR(decrement, "--")
+PUNCTUATOR(decrement_assign, "-=")
+PUNCTUATOR(pow, "**")
+PUNCTUATOR(mult_assign, "*=")
+PUNCTUATOR(div_assign, "/=")
+PUNCTUATOR(mod_assign, "\%=")
+PUNCTUATOR(arrow, "->")
+PUNCTUATOR(dense_arrow, "=>")
+PUNCTUATOR(plus, "+")
+PUNCTUATOR(minus, "-")
+PUNCTUATOR(star, "*")
+PUNCTUATOR(slash, "/")
+PUNCTUATOR(backslash, "\\")
+PUNCTUATOR(mod, "\%")
+PUNCTUATOR(exclaim_marker, "!")
+PUNCTUATOR(question_marker, "?")
+PUNCTUATOR(single_quote, "\'")
+PUNCTUATOR(double_quote, "\"")
+PUNCTUATOR(amp_prefix, "&")
+PUNCTUATOR(pipe_prefix, "|")
+PUNCTUATOR(tilde_prefix, "~")
+PUNCTUATOR(and_op, "&&")
+PUNCTUATOR(or_op, "||")
+LITERAL(integer_literal)
+LITERAL(float_literal)
+LITERAL(string_literal)
+LITERAL(regex_literal)
+MISC(unknown)
+MISC(identifier)
+MISC(contextual_keyword)
+MISC(string_segment)
+MISC(string_interpolation_anchor)
+MISC(eof)
+MISC(comment)
+MISC(multiline_comment)
+MISC(code_complete)
+
+#undef TOKEN
+#undef KEYWORD
+#undef DECL_KEYWORD
+#undef EXPR_KEYWORD
+#undef PATTERN_KEYWORD
+#undef STATEMENT_KEYWORD
+#undef LITERAL
+#undef PUNCTUATOR
+#undef MISC

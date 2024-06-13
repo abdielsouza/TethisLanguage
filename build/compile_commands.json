@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/abdiel/Documentos/general-projects/Tethis/build",
+  "command": "/usr/bin/c++ -I\"/home/abdiel/Documentos/general-projects/Tethis/src/**\" -I\"/usr/include/**\" -I\"/usr/local/include/**\" -g -std=gnu++20 -o CMakeFiles/Tethis.dir/src/main.cpp.o -c /home/abdiel/Documentos/general-projects/Tethis/src/main.cpp",
+  "file": "/home/abdiel/Documentos/general-projects/Tethis/src/main.cpp"
+},
+{
+  "directory": "/home/abdiel/Documentos/general-projects/Tethis/build",
+  "command": "/usr/bin/c++ -I\"/home/abdiel/Documentos/general-projects/Tethis/src/**\" -I\"/usr/include/**\" -I\"/usr/local/include/**\" -g -std=gnu++20 -o CMakeFiles/Tethis.dir/src/parsing/Lexer.cpp.o -c /home/abdiel/Documentos/general-projects/Tethis/src/parsing/Lexer.cpp",
+  "file": "/home/abdiel/Documentos/general-projects/Tethis/src/parsing/Lexer.cpp"
+}
+]
