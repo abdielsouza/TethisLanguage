@@ -1,9 +1,13 @@
 #include "Lexer.hpp"
+#include <cstdlib>
+#include <regex>
 
 namespace Tethis
 {
-    void Lexer::LexImpl()
+    Token Lexer::Next() noexcept
     {
+        while (isspace(this->Peek())) this->Get();
+
         
     }
 }

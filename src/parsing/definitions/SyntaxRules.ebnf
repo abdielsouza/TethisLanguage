@@ -1,0 +1,82 @@
+# some symbols
+# operators
+assignment_operator ::= '=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=' | '>>=' | '<<=' | '++' | '--'
+special_operator ::= 'new' | 'delete'
+arithmetic_operator ::= '+' | '-' | '*' | '/' | '**' | '//' | '%'
+bitwise_operator ::= '&' | '|' | '~' | '>>' | '<<'
+boolean_operator ::= '&&' | '||' | '^' | '!'
+comparison_operator ::= '==' | '!=' | '<=' | '>=' | '<' | '>'
+condition_operator ::= '??' | '?' | ':'
+misc_operator ::= '->' | ':' | '::' | '=>' | '()' | '[]'
+# delimiters, literals and scope-level definitions
+separator ::= ',' | ';'
+decimal_digit ::= [0-9]
+hex_digit ::= [0-9a-fA-F]
+bin_digit ::= [0-1]
+alpha ::= [a-zA-Z]
+
+# the literals (do not mix them)
+bool_kw ::= 'true' | 'false'
+null_kw ::= 'null'
+decimal_number ::= decimal_digit | [1-9] {decimal_digit}
+hex_number ::= ('0x' | '0X' | hex_number) hex_digit*
+bin_number ::= ('0b' | '0B' | bin_number) bin_digit*
+identifier ::= alpha
+
+integer ::= decimal_number
+float   ::= decimal_number '.' decimal_digit* ['f']
+
+some_literal ::= bool_kw | null_kw | integer | float | hex_number | bin_number | identifier
+
+#expressions and scope bodies
+assignment_expr ::= identifier assignment_operator some_literal
+expression ::= assignment_expr | expression ',' assignment_expr
+
+type_spec ::=
+                'void'
+            |   'int'
+            |   'uint'
+            |   'float'
+            |   'string'
+            |   'bool'
+            |   struct_spec
+            |   enum_spec
+            |   typealias_name 
+
+type_array_spec ::= type_spec {'[]'}*
+
+type_spec_qualifier ::= 
+
+struct_decl ::= 'struct' identifier
+struct_def ::= struct_decl compound_stmt
+typealias_decl ::= 'type' identifier '=' type_id
+
+type_parameter ::=  'struct' identifier                                       
+                |   'type' identifier '=' type_id                                                              
+                |   'struct' identifier '<' template_params_list '>'                                          
+                |   'type' identifier '=' type_id '<' template_params_list '>'                                  
+                |   'type' identifier '<' template_params_list '>' '=' type_id '<' template_params_list '>'     
+
+struct_member_decl ::= identifier ': ' type_id
+variable_decl ::=   'let' identifier ([': ' type_id] '=' value | ': ' type_id ['=' value])          |
+                    'static let' identifier ([': ' type_id] '=' value | ': ' type_id ['=' value])
+
+constant_decl ::= 'const' identifier [': ' type_id] '=' value | 'static const' identifier [': ' type_id] '=' value
+
+# statements
+expr_stmt ::= expression
+iter_stmt ::=   'loop' '(' condition ')' stmt                                   |
+                'for' '(' for_init_stmt 'in' iter_expr ')' stmt                 |
+                'for' '(' for_init_stmt 'in' iter_expr ';' [condition] ')' stmt
+
+cond_stmt ::=   'if' '(' condition ')' stmt ['elif' '(' condition ')' stmt]+ ['else' stmt] | 'match' '(' condition ')' stmt
+
+decl_stmt ::= declaration
+
+jump_stmt ::=   'break' ';'                 |
+                'continue' ';'              |
+                'return' [expression] ';'
+
+stmt ::= expr_stmt | iter_stmt | cond_stmt | decl_stmt | jump_stmt
+stmt_seq ::= stmt | stmt_seq stmt
+compound_stmt ::= '{' [stmt_seq] '}'

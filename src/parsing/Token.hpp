@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <string>
+#include <string_view>
 #include <cassert>
 
 namespace Tethis
@@ -16,7 +17,7 @@ namespace Tethis
         NUM_TOKENS
     };
     
-    std::string GetTokenText(TokenKind kind);
+    std::string_view GetTokenText(TokenKind kind);
 
     class Token
     {
@@ -27,9 +28,17 @@ namespace Tethis
         unsigned custom_delimiter_length : 8;
 
         unsigned comment_length;
-        std::string text;
+        std::string_view lexeme;
 
     public:
+        // CONSTRUCTORS
+
+        Token(TokenKind _kind) : kind(_kind) {}
+        Token(TokenKind _kind, const char* _beg, std::size_t _len) : kind(_kind), lexeme(_beg, _len) {}
+        Token(TokenKind _kind, const char* _beg, const char* _end) : kind(_kind), lexeme(_beg, std::distance(_beg, _end)) {}
+
+        // OTHER PUBLIC STUFFS
+
         bool HasComment() const
         {
             return comment_length != 0;
@@ -65,6 +74,9 @@ namespace Tethis
 
         bool IsAtLineStart() const { return at_line_start; }
         void SetAtLineStart(bool value) { at_line_start = value; }
+
+        std::string_view GetLexeme() const { return lexeme; }
+        void SetLexeme(std::string_view _lexeme) { lexeme = std::move(_lexeme); }
     };
 }
 
